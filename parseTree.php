@@ -1,0 +1,4 @@
+<?php
+function judgeAttack($str){
+	
+}
