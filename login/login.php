@@ -1,4 +1,5 @@
 <?php
+	$stime=microtime(true);
    // connect to mongodb
    $m = new MongoClient();
 //   echo "Connection to database successfully";
@@ -61,16 +62,11 @@
 //   	echo "<h1>not find</h1>";
    	echo $doc_failed->saveHTML();
    }
-/*    foreach ($cursor as $userfind){
-		$dbUsername = $userfind['username'];
-		$dbPassword = $userfind['password'];
-   }
-      
-    if($dbPassword == $postedpassword && $dbUsername == $postedusername){
-   		echo "succussful";
-   } */
-   // iterate cursor to display title of documents
-	
-/*    foreach ($cursor as $document) {
-      echo $document["username"] . "\n";
-   } */
+   $etime=microtime(true);//获取程序执行结束的时间
+   $total=$etime-$stime;
+   $str_total = var_export($total, TRUE);
+   if(substr_count($str_total,"E")){
+   	$float_total = floatval(substr($str_total,5));
+   	$total = $float_total/100000;
+   	echo $total.'seconds';
+   } else echo $total.'seconds';
