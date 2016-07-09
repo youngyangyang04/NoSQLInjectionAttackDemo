@@ -1,0 +1,12 @@
+http://localhost/github/NoSQLInjectionAttackDemo/demo.html
+http://localhost/github/NoSQLInjectionAttackDemo/detected_demo.html
+correct input:
+username:sunxiuyang
+password:123456
+
+wrong input:
+username:sunxiuyang
+password:12
+
+then put this url on brower
+http://localhost/injection/login/login.php?username[$ne]=1&password[$ne]=1
