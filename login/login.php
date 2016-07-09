@@ -27,7 +27,7 @@
    		 
    ); */
    $string = json_encode($data);
-   echo json_encode($data);
+   echo $string;
    
 //   print_r($data);
    $scope = array("user" => "Carl");
