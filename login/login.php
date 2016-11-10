@@ -9,7 +9,7 @@
    // select a database
    $db = $m->test;
 //   echo "Database mydb selected";
-   $collection = $db->user;
+   $collection = $db->users;
 //   echo "Collection selected succsessfully";
    $dbUsername = null;
    $dbPassword = null;
@@ -62,7 +62,7 @@
 //   	echo "<h1>not find</h1>";
    	echo $doc_failed->saveHTML();
    }
-   $etime=microtime(true);//获取程序执行结束的时间
+   $etime=microtime(true);//èŽ·å�–ç¨‹åº�æ‰§è¡Œç»“æ�Ÿçš„æ—¶é—´
    $total=$etime-$stime;
    $str_total = var_export($total, TRUE);
    if(substr_count($str_total,"E")){
