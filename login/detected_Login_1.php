@@ -1,5 +1,6 @@
 <?php
-
+include_once 'parseTree.php';
+use control\ParseTree;
 $stime=microtime(true);
 $m = new MongoClient();
 $db = $m->test;
@@ -10,7 +11,7 @@ $query_body ="
 			var password = ".$_REQUEST["password"].";if(username == '1'&&password == '1') return true; else{ return false;}}
 ";
 echo $query_body;
-
+//parseTree($query_body);
 
 //username=1&password=1;return true;}//
 
@@ -26,16 +27,19 @@ $doc_succeed = new DOMDocument();
 $doc_succeed->loadHTMLFile("succeed.html");
 $doc_attacked = new DOMDocument();
 $doc_attacked->loadHTMLFile("attacked.html");
-if((strpos($query_body,'//'))){
-	
+$parseTree = new ParseTree();
+
+if($parseTree->parseTree($query_body)){
 	echo $doc_attacked->saveHTML();
-}
-else if($count>0){
-	echo $doc_succeed->saveHTML();
-}
-else{
-	//	echo "<h1>username or password is wrong!</h1>";
-	echo $doc_failed->saveHTML();
+}else{
+		if($count>0){
+	
+		echo $doc_succeed->saveHTML();
+	}
+	else{
+		//	echo "<h1>username or password is wrong!</h1>";
+		echo $doc_failed->saveHTML();
+	}
 }
 
 

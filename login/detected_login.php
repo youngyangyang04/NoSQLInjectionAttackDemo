@@ -1,7 +1,9 @@
 <?php
+include_once 'parseTree.php';
+use control\ParseTree;
+	$stime=microtime(true);
    // connect to mongodb
    $m = new MongoClient();
-   $stime=microtime(true);
 //   echo "Connection to database successfully";
 //	$postedusername = $_REQUEST['username'];
 //	$postedpassword = $_REQUEST['password'];
@@ -9,7 +11,7 @@
    // select a database
    $db = $m->test;
 //   echo "Database mydb selected";
-   $collection = $db->user;
+   $collection = $db->users;
 //   echo "Collection selected succsessfully";
    $dbUsername = null;
    $dbPassword = null;
@@ -28,10 +30,6 @@
    		 
    ); */
    $string = json_encode($data);
-   $doc_attacked = new DOMDocument();
-   $doc_attacked->loadHTMLFile("attacked.html");
-   if(strpos($string,'$gt')) echo $doc_attacked->saveHTML();
-   else echo "safe";
    echo $string;
    
 //   print_r($data);
@@ -53,19 +51,29 @@
    $doc_failed->loadHTMLFile("failed.html");
    $doc_succeed = new DOMDocument();
    $doc_succeed->loadHTMLFile("succeed.html");
+   $doc_attacked = new DOMDocument();
+   $doc_attacked->loadHTMLFile("attacked.html");
 //   echo $count;
-   if($count >0 ){
-//   	echo "<h1>login successed</h1>"."</br>";
-   	echo $doc_succeed->saveHTML();
-   	foreach ($cursor as $user){
-   			echo 'username:'.$user['username']."</br>";
-   			echo 'password:'.$user['password']."</br>";
-   		}
-   }
-   else{
-//   	echo "<h1>not find</h1>";
-   	echo $doc_failed->saveHTML();
-   }
+   $parseTree = new ParseTree();
+	if($parseTree->parseTree($string)){
+		echo $doc_attacked->saveHTML();
+	}
+	else
+	{
+		if($count >0 ){
+	
+		//   	echo "<h1>login successed</h1>"."</br>";
+		   	echo $doc_succeed->saveHTML();
+		   	foreach ($cursor as $user){
+		   			echo 'username:'.$user['username']."</br>";
+		   			echo 'password:'.$user['password']."</br>";
+		   		}
+		   }
+		   else{
+		//   	echo "<h1>not find</h1>";
+		   	echo $doc_failed->saveHTML();
+		   }
+	}
    $etime=microtime(true);//èŽ·å�–ç¨‹åº�æ‰§è¡Œç»“æ�Ÿçš„æ—¶é—´
    $total=$etime-$stime;
    $str_total = var_export($total, TRUE);
